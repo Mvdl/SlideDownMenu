@@ -43,7 +43,7 @@ class SecondViewController: UIViewController {
     
     func setViewAlphas(centerRatio: CGFloat) {
         slidingView.alpha = originalPanelAlpha + (centerRatio * (1.0 - originalPanelAlpha))
-        let howFarFromCenterRatio = 0.5 - centerRatio
+        //let howFarFromCenterRatio = 0.5 - centerRatio
         //summaryLabel.alpha = howFarFromCenterRatio * 2
         //longTextLabel.alpha = -howFarFromCenterRatio * 2
     }
@@ -80,19 +80,23 @@ class SecondViewController: UIViewController {
             //let yDelta = point.y - lastPoint.y
             let yDelta = lastPoint.y - point.y
             var newConstant = slidingViewTopConstraint.constant - yDelta
-            newConstant = newConstant > originalPanelPosition ? originalPanelPosition : newConstant
+            newConstant = newConstant > originalPanelPosition ? newConstant : originalPanelPosition
             newConstant = newConstant < -screenHeight ? -screenHeight : newConstant
             slidingViewTopConstraint.constant = newConstant
+            print ("slide: slidingViewTopConstraint.constant = \(slidingViewTopConstraint.constant)")
         case .ended:
             //self.slidingViewTopConstraint.constant = centerRatio < 0.5 ? self.originalPanelPosition : -screenHeight
             //self.slidingViewTopConstraint.constant = centerRatio > 0.5 ?  -screenHeight : self.originalPanelPosition
             //self.slidingViewTopConstraint.constant = centerRatio > 0.5 ?   self.originalPanelPosition : -screenHeight + 150
             
             if centerRatio > 0.5  {
-                slidingViewTopConstraint.constant = originalPanelPosition
+                slidingViewTopConstraint.constant =  originalPanelPosition
             } else  {
-                slidingViewTopConstraint.constant = -screenHeight + 150
+                slidingViewTopConstraint.constant = -screenHeight
             }
+            //originalPanelPosition
+            print ("originalPanelPosition = \(originalPanelPosition)")
+            print ("slidingViewTopConstraint.constant = \(slidingViewTopConstraint.constant)")
             
             UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.8, options: UIViewAnimationOptions(), animations: {
                 self.view.layoutIfNeeded()
