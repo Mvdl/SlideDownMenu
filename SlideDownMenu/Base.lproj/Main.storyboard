@@ -128,7 +128,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tm1-iY-949">
-                                        <rect key="frame" x="10" y="150" width="355" height="200"/>
+                                        <rect key="frame" x="10" y="-125" width="355" height="200"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="down" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yAN-zA-CNf">
                                                 <rect key="frame" x="156" y="171" width="42" height="21"/>
@@ -155,7 +155,7 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.1333333333" green="0.70980392160000005" blue="0.45098039220000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstItem="Tm1-iY-949" firstAttribute="top" secondItem="XUb-3T-ou8" secondAttribute="top" constant="150" id="QkG-Ty-48e"/>
+                                    <constraint firstItem="Tm1-iY-949" firstAttribute="top" secondItem="XUb-3T-ou8" secondAttribute="top" constant="-125" id="QkG-Ty-48e"/>
                                     <constraint firstAttribute="trailing" secondItem="Tm1-iY-949" secondAttribute="trailing" constant="10" id="ef3-4r-i2g"/>
                                     <constraint firstItem="Tm1-iY-949" firstAttribute="leading" secondItem="XUb-3T-ou8" secondAttribute="leading" constant="10" id="lCx-UL-GBv"/>
                                 </constraints>
