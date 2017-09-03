@@ -129,7 +129,7 @@
 				TargetAttributes = {
 					7B2AA6401F594AF500FE01C1 = {
 						CreatedOnToolsVersion = 8.3.1;
-						DevelopmentTeam = K693WY4Y5S;
+						DevelopmentTeam = NCCM46Q6WU;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -345,7 +345,7 @@
 			baseConfigurationReference = 7E64C7795A7011138933B234 /* Pods-SlideDownMenu.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = K693WY4Y5S;
+				DEVELOPMENT_TEAM = NCCM46Q6WU;
 				INFOPLIST_FILE = SlideDownMenu/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.skopei.SlideDownMenu;
@@ -359,7 +359,7 @@
 			baseConfigurationReference = 8772C0AC14C37DC868FD785C /* Pods-SlideDownMenu.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = K693WY4Y5S;
+				DEVELOPMENT_TEAM = NCCM46Q6WU;
 				INFOPLIST_FILE = SlideDownMenu/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.skopei.SlideDownMenu;
