@@ -17,12 +17,11 @@ class SecondViewController: UIViewController {
     @IBOutlet weak var slidingViewTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var pullLabel: UILabel!
     
-    var panelShown: Bool = false
+    var slideDownViewShown: Bool = false
     
-    var originalPanelAlpha: CGFloat = 0
-    var originalPanelPosition: CGFloat = 0
-    var originalPanelStartPosition: CGFloat = 0
-    var endPanelPosition: CGFloat = 0
+    var originalSlideDownViewAlpha: CGFloat = 0
+    var slideDownViewStartPosition: CGFloat = 0
+    var slideDownViewEndPosition: CGFloat = 0
 
     var lastPoint: CGPoint = CGPoint.zero
     
@@ -34,7 +33,6 @@ class SecondViewController: UIViewController {
         pullLabel.text = "pull up"
         
         _ = panGestureRecognizer // lazily init
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -45,62 +43,60 @@ class SecondViewController: UIViewController {
     
     func updateUI() {
         slidingViewTopConstraint.constant = -slidingView.frame.size.height + 104
-        originalPanelPosition = slidingViewTopConstraint.constant
-        originalPanelStartPosition = slidingViewTopConstraint.constant//slidingView.frame.origin.y
-        originalPanelAlpha = slidingView.alpha
-        endPanelPosition = 64//slidingView.bounds.height
+        originalSlideDownViewPosition = slidingViewTopConstraint.constant
+        slideDownViewStartPosition = slidingViewTopConstraint.constant//slidingView.frame.origin.y
+        originalSlideDownViewAlpha = slidingView.alpha
+        slideDownViewEndPosition = 64//slidingView.bounds.height
         print ("slidingView height is \(slidingView.frame.size.height)")
-        print ("originalPanelStartPosition is \(originalPanelStartPosition)")
+        print ("slideDownViewStartPosition is \(slideDownViewStartPosition)")
     }
-    
+
     func setViewAlphas(centerRatio: CGFloat) {
-        slidingView.alpha = originalPanelAlpha + (centerRatio * (1.0 - originalPanelAlpha))
+        slidingView.alpha = originalSlideDownViewAlpha + (centerRatio * (1.0 - originalSlideDownViewAlpha))
         //let howFarFromCenterRatio = 0.5 - centerRatio
         //summaryLabel.alpha = howFarFromCenterRatio * 2
         //longTextLabel.alpha = -howFarFromCenterRatio * 2
     }
 
-    @IBAction func showPanel(_ sender: Any) {
-        // panelShown is an iVar to track the panel state...
-        if (!panelShown) {
+    @IBAction func showSlideDownView(_ sender: Any) {
+        // SlideDownViewShown is an iVar to track the SlideDownView state...
+        if (!slideDownViewShown) {
             UIView.animate(withDuration: 0.5, animations: {
-                self.slidingViewTopConstraint.constant = self.endPanelPosition//slidingView.frame.size.height
+                self.slidingViewTopConstraint.constant = self.slideDownViewEndPosition//slidingView.frame.size.height
                 self.view.layoutIfNeeded()
-                self.panelShown = true
+                self.slideDownViewShown = true
                 self.pullLabel.text = "pull up"
             })
         }
         else {
             UIView.animate(withDuration: 0.5, animations: {
-                self.slidingViewTopConstraint.constant = self.originalPanelPosition//slidingView.frame.size.height
+                self.slidingViewTopConstraint.constant = self.originalSlideDownViewPosition//slidingView.frame.size.height
                 self.view.layoutIfNeeded()
-                self.panelShown = false
+                self.slideDownViewShown = false
                 self.pullLabel.text = "pull down"
             })
         }
-        print ("button tapped: slidingView.frame.origin.y is \(slidingView.frame.origin.y) en originalPanelStartPosition is \(originalPanelStartPosition)")
+        print ("button tapped: slidingView.frame.origin.y is \(slidingView.frame.origin.y) en slideDownViewStartPosition is \(slideDownViewStartPosition)")
     }
     
     @IBAction func didPanView(_ sender: UIPanGestureRecognizer) {
-        //print ("view is panned")
         
         let point = panGestureRecognizer.location(in: self.slidingView)
-        let centerRatio = (slidingViewTopConstraint.constant + originalPanelPosition) / (endPanelPosition + originalPanelPosition)
+        let centerRatio = (slidingViewTopConstraint.constant + originalSlideDownViewPosition) / (slideDownViewEndPosition + originalSlideDownViewPosition)
         
         switch panGestureRecognizer.state {
         case .changed:
-            
             let velocity = panGestureRecognizer.velocity(in: panGestureRecognizer.view)
             let translation = panGestureRecognizer.translation(in: self.slidingView)
             if let view = panGestureRecognizer.view {
                 if velocity.y > 0 {
                     // down
-                    view.center = CGPoint(x: view.center.x, y: min(view.center.y + translation.y, slidingView.frame.height / 2 + endPanelPosition))
+                    view.center = CGPoint(x: view.center.x, y: min(view.center.y + translation.y, slidingView.frame.height / 2 + slideDownViewEndPosition))
                     print("down")
                 }
                 else if velocity.y < 0 {
                     // up
-                    view.center = CGPoint(x: view.center.x, y: max(view.center.y + translation.y, slidingView.frame.height / 2 + originalPanelPosition))
+                    view.center = CGPoint(x: view.center.x, y: max(view.center.y + translation.y, slidingView.frame.height / 2 + originalSlideDownViewPosition))
                     print("up")
                 }
             }
@@ -110,7 +106,7 @@ class SecondViewController: UIViewController {
             print ("centerRatio = \(centerRatio)")
             
             // check if user is sliding up or down
-            if let view = panGestureRecognizer.view {
+            if panGestureRecognizer.view != nil {
                 let velocity = panGestureRecognizer.velocity(in: panGestureRecognizer.view)
                 var verticalDirectionTreshold: CGFloat = 0.0
                 
@@ -125,11 +121,11 @@ class SecondViewController: UIViewController {
                     print("up")
                 }
                 
-                print ("slidingView.frame.origin.y is \(slidingView.frame.origin.y) en originalPanelStartPosition is \(originalPanelStartPosition)")
+                //print ("slidingView.frame.origin.y is \(slidingView.frame.origin.y) en slideDownViewStartPosition is \(slideDownViewStartPosition)")
                 if centerRatio < verticalDirectionTreshold  {
-                    slidingViewTopConstraint.constant = originalPanelStartPosition
-                } else if Int(slidingView.frame.origin.y) != Int(originalPanelStartPosition) {
-                    slidingViewTopConstraint.constant = endPanelPosition//originalPanelPosition
+                    slidingViewTopConstraint.constant = slideDownViewStartPosition
+                } else if Int(slidingView.frame.origin.y) != Int(slideDownViewStartPosition) {
+                    slidingViewTopConstraint.constant = slideDownViewEndPosition//originalSlideDownViewPosition
                 }
 
                 UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.8, options: UIViewAnimationOptions(), animations: {
@@ -140,9 +136,6 @@ class SecondViewController: UIViewController {
             break
         }
         lastPoint = point
-
     }
-
-    
 
 }
