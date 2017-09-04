@@ -27,8 +27,6 @@ class SecondViewController: UIViewController {
     var lastPoint: CGPoint = CGPoint.zero
     
     
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
