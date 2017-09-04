@@ -10,19 +10,21 @@ import UIKit
 
 class SecondViewController: UIViewController {
     
+    let slideDownViewBottomButtonDownImage = UIImage(named: "downChevronSmall")?.withRenderingMode(.alwaysTemplate)
+    let slideDownViewBottomButtonUpImage = UIImage(named: "upChevronSmall")?.withRenderingMode(.alwaysTemplate)
+    
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var slidingView: UIView!
-    
     @IBOutlet var panGestureRecognizer: UIPanGestureRecognizer!
     @IBOutlet weak var slidingViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var slideDownButtonView: UIView!
+    @IBOutlet weak var slideDownViewBottomButton: UIButton!
     @IBOutlet weak var pullLabel: UILabel!
     
     var slideDownViewShown: Bool = false
-    
     var originalSlideDownViewAlpha: CGFloat = 0
     var slideDownViewStartPosition: CGFloat = 0
     var slideDownViewEndPosition: CGFloat = 0
-
     var lastPoint: CGPoint = CGPoint.zero
     
     
@@ -31,6 +33,9 @@ class SecondViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         pullLabel.text = "pull up"
+        
+        slideDownViewBottomButton.setImage(slideDownViewBottomButtonDownImage, for: UIControlState.normal)
+        slideDownViewBottomButton.tintColor = .black
         
         _ = panGestureRecognizer // lazily init
     }
@@ -43,7 +48,6 @@ class SecondViewController: UIViewController {
     
     func updateUI() {
         slidingViewTopConstraint.constant = -slidingView.frame.size.height + 104
-        originalSlideDownViewPosition = slidingViewTopConstraint.constant
         slideDownViewStartPosition = slidingViewTopConstraint.constant//slidingView.frame.origin.y
         originalSlideDownViewAlpha = slidingView.alpha
         slideDownViewEndPosition = 64//slidingView.bounds.height
@@ -53,13 +57,12 @@ class SecondViewController: UIViewController {
 
     func setViewAlphas(centerRatio: CGFloat) {
         slidingView.alpha = originalSlideDownViewAlpha + (centerRatio * (1.0 - originalSlideDownViewAlpha))
-        //let howFarFromCenterRatio = 0.5 - centerRatio
-        //summaryLabel.alpha = howFarFromCenterRatio * 2
+        let howFarFromCenterRatio = 0.5 - centerRatio
+        slideDownButtonView.alpha = howFarFromCenterRatio * 2
         //longTextLabel.alpha = -howFarFromCenterRatio * 2
     }
 
-    @IBAction func showSlideDownView(_ sender: Any) {
-        // SlideDownViewShown is an iVar to track the SlideDownView state...
+    @IBAction func didTapSlideDownViewBottomButton(_ sender: UIButton) {
         if (!slideDownViewShown) {
             UIView.animate(withDuration: 0.5, animations: {
                 self.slidingViewTopConstraint.constant = self.slideDownViewEndPosition//slidingView.frame.size.height
@@ -70,7 +73,7 @@ class SecondViewController: UIViewController {
         }
         else {
             UIView.animate(withDuration: 0.5, animations: {
-                self.slidingViewTopConstraint.constant = self.originalSlideDownViewPosition//slidingView.frame.size.height
+                self.slidingViewTopConstraint.constant = self.slideDownViewStartPosition//slidingView.frame.size.height
                 self.view.layoutIfNeeded()
                 self.slideDownViewShown = false
                 self.pullLabel.text = "pull down"
@@ -82,7 +85,7 @@ class SecondViewController: UIViewController {
     @IBAction func didPanView(_ sender: UIPanGestureRecognizer) {
         
         let point = panGestureRecognizer.location(in: self.slidingView)
-        let centerRatio = (slidingViewTopConstraint.constant + originalSlideDownViewPosition) / (slideDownViewEndPosition + originalSlideDownViewPosition)
+        let centerRatio = (slidingViewTopConstraint.constant + slideDownViewStartPosition) / (slideDownViewEndPosition + slideDownViewStartPosition)
         
         switch panGestureRecognizer.state {
         case .changed:
@@ -96,11 +99,13 @@ class SecondViewController: UIViewController {
                 }
                 else if velocity.y < 0 {
                     // up
-                    view.center = CGPoint(x: view.center.x, y: max(view.center.y + translation.y, slidingView.frame.height / 2 + originalSlideDownViewPosition))
+                    view.center = CGPoint(x: view.center.x, y: max(view.center.y + translation.y, slidingView.frame.height / 2 + slideDownViewStartPosition))
                     print("up")
                 }
             }
+            print ("centerRatio = \(centerRatio)")
 
+            setViewAlphas(centerRatio: centerRatio)
             panGestureRecognizer.setTranslation(CGPoint.zero, in: self.slidingView)
         case .ended:
             print ("centerRatio = \(centerRatio)")
@@ -129,6 +134,7 @@ class SecondViewController: UIViewController {
                 }
 
                 UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.8, options: UIViewAnimationOptions(), animations: {
+                    self.setViewAlphas(centerRatio: centerRatio < 0.5 ? 0.0 : 1.0)
                     self.view.layoutIfNeeded()
                 }, completion: nil)
             }
