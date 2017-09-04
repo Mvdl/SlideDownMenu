@@ -22,7 +22,7 @@ class SecondViewController: UIViewController {
     @IBOutlet weak var pullLabel: UILabel!
     
     var slideDownViewShown: Bool = false
-    var originalSlideDownViewAlpha: CGFloat = 0
+    var originalSlideDownViewAlpha: CGFloat = 1.0
     var slideDownViewStartPosition: CGFloat = 0
     var slideDownViewEndPosition: CGFloat = 0
     var lastPoint: CGPoint = CGPoint.zero
@@ -56,13 +56,14 @@ class SecondViewController: UIViewController {
     }
 
     func setViewAlphas(centerRatio: CGFloat) {
-        slidingView.alpha = originalSlideDownViewAlpha + (centerRatio * (1.0 - originalSlideDownViewAlpha))
-        let howFarFromCenterRatio = 0.5 - centerRatio
-        slideDownButtonView.alpha = howFarFromCenterRatio * 2
-        //longTextLabel.alpha = -howFarFromCenterRatio * 2
+        let howFarFromEndRatio = 1.0 - centerRatio
+        slideDownButtonView.alpha = howFarFromEndRatio * 2
+        print ("howFarFromEndRatio: \(howFarFromEndRatio)")
     }
 
     @IBAction func didTapSlideDownViewBottomButton(_ sender: UIButton) {
+        let testCenterRatio = (slidingView.frame.origin.y + -slideDownViewStartPosition) / (slideDownViewEndPosition + -slideDownViewStartPosition)
+        
         if (!slideDownViewShown) {
             UIView.animate(withDuration: 0.5, animations: {
                 self.slidingViewTopConstraint.constant = self.slideDownViewEndPosition//slidingView.frame.size.height
@@ -86,6 +87,8 @@ class SecondViewController: UIViewController {
         
         let point = panGestureRecognizer.location(in: self.slidingView)
         let centerRatio = (slidingViewTopConstraint.constant + slideDownViewStartPosition) / (slideDownViewEndPosition + slideDownViewStartPosition)
+        let testCenterRatio = (slidingView.frame.origin.y + -slideDownViewStartPosition) / (slideDownViewEndPosition + -slideDownViewStartPosition)
+
         
         switch panGestureRecognizer.state {
         case .changed:
@@ -103,9 +106,9 @@ class SecondViewController: UIViewController {
                     print("up")
                 }
             }
-            print ("centerRatio = \(centerRatio)")
+            print ("testCenterRatio = \(testCenterRatio)")
 
-            setViewAlphas(centerRatio: centerRatio)
+            setViewAlphas(centerRatio: testCenterRatio)
             panGestureRecognizer.setTranslation(CGPoint.zero, in: self.slidingView)
         case .ended:
             print ("centerRatio = \(centerRatio)")
@@ -134,7 +137,8 @@ class SecondViewController: UIViewController {
                 }
 
                 UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.8, options: UIViewAnimationOptions(), animations: {
-                    self.setViewAlphas(centerRatio: centerRatio < 0.5 ? 0.0 : 1.0)
+                    self.setViewAlphas(centerRatio: testCenterRatio > verticalDirectionTreshold ? 1.0 : 0.0)// < 0.5 ? 0.0 : 1.0)
+                    print ("Animating: testCenterRatio = \(testCenterRatio)")
                     self.view.layoutIfNeeded()
                 }, completion: nil)
             }
