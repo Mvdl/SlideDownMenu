@@ -32,7 +32,7 @@ class SecondViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        pullLabel.text = "pull up"
+        pullLabel.text = "Legenda"
         
         slideDownViewBottomButton.setImage(slideDownViewBottomButtonDownImage, for: UIControlState.normal)
         slideDownViewBottomButton.tintColor = .black
@@ -62,24 +62,23 @@ class SecondViewController: UIViewController {
     }
 
     @IBAction func didTapSlideDownViewBottomButton(_ sender: UIButton) {
-        let testCenterRatio = (slidingView.frame.origin.y + -slideDownViewStartPosition) / (slideDownViewEndPosition + -slideDownViewStartPosition)
+        //let testCenterRatio = (slidingView.frame.origin.y + -slideDownViewStartPosition) / (slideDownViewEndPosition + -slideDownViewStartPosition)
         
         if (!slideDownViewShown) {
-            UIView.animate(withDuration: 0.5, animations: {
-                self.slidingViewTopConstraint.constant = self.slideDownViewEndPosition//slidingView.frame.size.height
-                self.view.layoutIfNeeded()
-                self.slideDownViewShown = true
-                self.pullLabel.text = "pull up"
-            })
+            self.slidingViewTopConstraint.constant = self.slideDownViewEndPosition//slidingView.frame.size.height
+            self.slideDownViewShown = true
+            slideDownButtonView.alpha = 0.0
         }
         else {
-            UIView.animate(withDuration: 0.5, animations: {
-                self.slidingViewTopConstraint.constant = self.slideDownViewStartPosition//slidingView.frame.size.height
-                self.view.layoutIfNeeded()
-                self.slideDownViewShown = false
-                self.pullLabel.text = "pull down"
-            })
+            self.slidingViewTopConstraint.constant = self.slideDownViewStartPosition//slidingView.frame.size.height
+            self.slideDownViewShown = false
+            slideDownButtonView.alpha = 1.0
         }
+        
+        UIView.animate(withDuration: 0.5, animations: {
+            self.view.layoutIfNeeded()
+        })
+        
         print ("button tapped: slidingView.frame.origin.y is \(slidingView.frame.origin.y) en slideDownViewStartPosition is \(slideDownViewStartPosition)")
     }
     
