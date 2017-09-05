@@ -12,9 +12,10 @@
 		7B2AA64A1F594AF500FE01C1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B2AA6481F594AF500FE01C1 /* Main.storyboard */; };
 		7B2AA64C1F594AF500FE01C1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B2AA64B1F594AF500FE01C1 /* Assets.xcassets */; };
 		7B2AA64F1F594AF500FE01C1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B2AA64D1F594AF500FE01C1 /* LaunchScreen.storyboard */; };
-		7B2AA65B1F595EF100FE01C1 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2AA65A1F595EF100FE01C1 /* SecondViewController.swift */; };
 		7B4E82EF1F5D8FBD0038850C /* SlideDownView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B4E82EE1F5D8FBD0038850C /* SlideDownView.xib */; };
 		7B4E82F11F5D8FD10038850C /* SlideDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4E82F01F5D8FD10038850C /* SlideDownView.swift */; };
+		7B4E82F61F5EF1EC0038850C /* MenuContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4E82F41F5EF1EC0038850C /* MenuContentViewController.swift */; };
+		7B4E82F71F5EF1EC0038850C /* MenuContentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B4E82F51F5EF1EC0038850C /* MenuContentViewController.xib */; };
 		E785F035028EAD3AC3F94844 /* Pods_SlideDownMenu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB9FAAA4C0F191CDFBCB7A69 /* Pods_SlideDownMenu.framework */; };
 /* End PBXBuildFile section */
 
@@ -26,9 +27,10 @@
 		7B2AA64B1F594AF500FE01C1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7B2AA64E1F594AF500FE01C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7B2AA6501F594AF500FE01C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7B2AA65A1F595EF100FE01C1 /* SecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		7B4E82EE1F5D8FBD0038850C /* SlideDownView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SlideDownView.xib; sourceTree = "<group>"; };
 		7B4E82F01F5D8FD10038850C /* SlideDownView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideDownView.swift; sourceTree = "<group>"; };
+		7B4E82F41F5EF1EC0038850C /* MenuContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuContentViewController.swift; sourceTree = "<group>"; };
+		7B4E82F51F5EF1EC0038850C /* MenuContentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuContentViewController.xib; sourceTree = "<group>"; };
 		7E64C7795A7011138933B234 /* Pods-SlideDownMenu.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SlideDownMenu.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SlideDownMenu/Pods-SlideDownMenu.debug.xcconfig"; sourceTree = "<group>"; };
 		8772C0AC14C37DC868FD785C /* Pods-SlideDownMenu.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SlideDownMenu.release.xcconfig"; path = "Pods/Target Support Files/Pods-SlideDownMenu/Pods-SlideDownMenu.release.xcconfig"; sourceTree = "<group>"; };
 		BB9FAAA4C0F191CDFBCB7A69 /* Pods_SlideDownMenu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SlideDownMenu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -77,7 +79,8 @@
 			children = (
 				7B2AA6441F594AF500FE01C1 /* AppDelegate.swift */,
 				7B2AA6461F594AF500FE01C1 /* ViewController.swift */,
-				7B2AA65A1F595EF100FE01C1 /* SecondViewController.swift */,
+				7B4E82F41F5EF1EC0038850C /* MenuContentViewController.swift */,
+				7B4E82F51F5EF1EC0038850C /* MenuContentViewController.xib */,
 				7B4E82F01F5D8FD10038850C /* SlideDownView.swift */,
 				7B4E82EE1F5D8FBD0038850C /* SlideDownView.xib */,
 				7B2AA6481F594AF500FE01C1 /* Main.storyboard */,
@@ -163,6 +166,7 @@
 				7B2AA64F1F594AF500FE01C1 /* LaunchScreen.storyboard in Resources */,
 				7B2AA64C1F594AF500FE01C1 /* Assets.xcassets in Resources */,
 				7B4E82EF1F5D8FBD0038850C /* SlideDownView.xib in Resources */,
+				7B4E82F71F5EF1EC0038850C /* MenuContentViewController.xib in Resources */,
 				7B2AA64A1F594AF500FE01C1 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -222,8 +226,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7B2AA65B1F595EF100FE01C1 /* SecondViewController.swift in Sources */,
 				7B2AA6471F594AF500FE01C1 /* ViewController.swift in Sources */,
+				7B4E82F61F5EF1EC0038850C /* MenuContentViewController.swift in Sources */,
 				7B4E82F11F5D8FD10038850C /* SlideDownView.swift in Sources */,
 				7B2AA6451F594AF500FE01C1 /* AppDelegate.swift in Sources */,
 			);

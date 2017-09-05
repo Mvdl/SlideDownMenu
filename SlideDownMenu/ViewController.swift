@@ -14,17 +14,15 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        let menuContentViewController = MenuContentViewController()
+        slideDownView.contentView.addSubview(menuContentViewController.view)
+        menuContentViewController.view.frame = slideDownView.contentView.bounds
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        slideDownView.backgroundColor = .blue
-        slideDownView.updateUI()
-    }
-    @IBAction func didTapButton(_ sender: Any) {
-        slideDownView.contentView.backgroundColor = .yellow
         slideDownView.updateUI()
     }
 }

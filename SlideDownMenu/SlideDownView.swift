@@ -10,11 +10,17 @@ import UIKit
 
 class SlideDownView: UIView {
     
+    let slideDownViewBottomButtonDownImage = UIImage(named: "downChevronSmall")?.withRenderingMode(.alwaysTemplate)
+    let slideDownViewBottomButtonUpImage = UIImage(named: "upChevronSmall")?.withRenderingMode(.alwaysTemplate)
+    
     @IBOutlet weak var view: UIView!
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var slideDownButtonView: UIView!
+    @IBOutlet weak var slideDownButtonBottomView: UIView!
+    @IBOutlet weak var slideDownViewBottomButtonUpImageView: UIImageView!
+    @IBOutlet weak var slideDownViewBottomButtonDownImageView: UIImageView!
     @IBOutlet var panGestureRecognizer: UIPanGestureRecognizer!
-    @IBOutlet weak var slideDownViewBottomButton: UIButton!
+    @IBOutlet var tapGestureRecognizer: UITapGestureRecognizer!
     @IBOutlet weak var pullLabel: UILabel!
   
     enum swipeDirection {
@@ -24,9 +30,8 @@ class SlideDownView: UIView {
     
     var mySwipeDirection = swipeDirection.down
     var slideDownViewOut: Bool = false
-    var originalSlideDownViewAlpha: CGFloat = 1.0
-    var slideDownViewStartPosition: CGFloat!
-    var slideDownViewEndPosition: CGFloat!
+    var slideDownViewStartPosition: CGFloat = 0.0
+    var slideDownViewEndPosition: CGFloat = 100.0
     
     
     required init?(coder aDecoder: NSCoder) {
@@ -36,19 +41,20 @@ class SlideDownView: UIView {
     
     private func nibSetup() {
         self.translatesAutoresizingMaskIntoConstraints = false
-
+        
         view = loadViewFromNib()
         view.frame = bounds
-        view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        view.translatesAutoresizingMaskIntoConstraints = true
-        view.backgroundColor = .purple
+        view.backgroundColor = .clear
         addSubview(view)
         
-        self.backgroundColor = .clear
-        
-        originalSlideDownViewAlpha = self.alpha
-        slideDownViewStartPosition = -self.frame.height + 104// visible part of menu + navigationbar height
         slideDownViewEndPosition = 64// navigation bar height
+        slideDownViewBottomButtonUpImageView.image = slideDownViewBottomButtonUpImage
+        slideDownViewBottomButtonUpImageView.tintColor = .black
+        slideDownViewBottomButtonDownImageView.image = slideDownViewBottomButtonDownImage
+        slideDownViewBottomButtonDownImageView.tintColor = .red
+        slideDownButtonBottomView.backgroundColor = .clear
+        
+        self.backgroundColor = .clear
         
         updateUI()
     }
@@ -62,13 +68,44 @@ class SlideDownView: UIView {
     }
     
     func updateUI() {
+        slideDownViewStartPosition = -self.frame.height + 114 // visible part of menu + navigationbar height
         self.center = CGPoint(x: self.center.x, y:  self.frame.height / 2 + slideDownViewStartPosition)
-
+        /*
         print ("slidingView height is \(view.frame.size.height)")
         print ("slideDownViewStartPosition is \(slideDownViewStartPosition)")
         print ("self.center is \(self.center)")
         print ("self.frame.origin.y is \(self.frame.origin.y)")
+        */
+        
         self.layoutIfNeeded()
+    }
+    
+    func setViewAlpha(centerRatio: CGFloat) {
+        let ratioToAlpha = 1.0 - centerRatio
+        slideDownButtonBottomView.alpha = ratioToAlpha * 2
+        //print ("ratioToAlpha: \(ratioToAlpha)")
+    }
+    
+    @IBAction func didTapslideDownButtonView(gestureRecognizer: UIGestureRecognizer) {
+        setMenu()
+    }
+    
+    func setMenu()  {
+        if (!slideDownViewOut) {
+            UIView.animate(withDuration: 0.5, animations: {
+                self.center = CGPoint(x: self.center.x, y: self.frame.height / 2 + self.slideDownViewEndPosition)
+                self.slideDownViewOut = true
+                self.slideDownButtonBottomView.alpha = 0.0
+                self.view.layoutIfNeeded()
+            })
+        }
+        else {
+            UIView.animate(withDuration: 0.5, animations: {
+                self.center = CGPoint(x: self.center.x, y:  self.frame.height / 2 + self.slideDownViewStartPosition)
+                self.slideDownViewOut = false
+                self.slideDownButtonBottomView.alpha = 1.0
+            })
+        }
     }
 
     @IBAction func didPanView(_ sender: UIPanGestureRecognizer) {
@@ -94,9 +131,9 @@ class SlideDownView: UIView {
                 self.center = CGPoint(x: self.center.x, y: max(self.center.y + translation.y, self.frame.height / 2 + slideDownViewStartPosition))
             }
             
-            print ("centerRatio = \(centerRatio)")
+            //print ("centerRatio = \(centerRatio)")
             
-            //setViewAlphas(centerRatio: centerRatio)
+            setViewAlpha(centerRatio: centerRatio)
             panGestureRecognizer.setTranslation(CGPoint.zero, in: self)
         case .ended:
             if panGestureRecognizer.view != nil {
@@ -121,12 +158,9 @@ class SlideDownView: UIView {
                 }
                 
                 UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.8, options: UIViewAnimationOptions(), animations: {
-                    //self.setViewAlphas(centerRatio: centerRatio > verticalDirectionTreshold ? 1.0 : 0.0)// < 0.5 ? 0.0 : 1.0)
-                    print ("Animating: testCenterRatio = \(centerRatio)")
+                    self.setViewAlpha(centerRatio: centerRatio > verticalDirectionTreshold ? 1.0 : 0.0)
                     self.center = newCenter
-                }, completion: { finished in
-                     print ("self.frame.origin.y is \(self.frame.origin.y)")
-                })
+                }, completion: nil)
             }
         default:
             break

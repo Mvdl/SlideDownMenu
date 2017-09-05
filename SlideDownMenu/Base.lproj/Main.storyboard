@@ -21,28 +21,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6nA-rz-h6o">
-                                <rect key="frame" x="171" y="420" width="32" height="30"/>
-                                <state key="normal" title="Next"/>
-                                <connections>
-                                    <action selector="didTapButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="oNM-No-qHS"/>
-                                </connections>
-                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="parade" translatesAutoresizingMaskIntoConstraints="NO" id="SUK-kc-ubX">
+                                <rect key="frame" x="-0.5" y="-0.5" width="375" height="667"/>
+                            </imageView>
                             <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AmM-xf-wEq" customClass="SlideDownView" customModule="SlideDownMenu" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="-83" width="375" height="400"/>
+                                <rect key="frame" x="0.0" y="-39" width="375" height="236"/>
                                 <color key="backgroundColor" red="0.80000001190000003" green="1" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="400" id="NGI-Ce-dvn"/>
+                                    <constraint firstAttribute="height" constant="236" id="NGI-Ce-dvn"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="6nA-rz-h6o" firstAttribute="centerX" secondItem="AmM-xf-wEq" secondAttribute="centerX" id="H5p-km-J7l"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="6nA-rz-h6o" secondAttribute="bottom" constant="217" id="PTj-Rg-NvL"/>
+                            <constraint firstItem="SUK-kc-ubX" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="D1q-4L-hlf"/>
+                            <constraint firstItem="SUK-kc-ubX" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="cii-aY-At3"/>
                             <constraint firstAttribute="trailing" secondItem="AmM-xf-wEq" secondAttribute="trailing" id="dYn-Ud-D2Y"/>
                             <constraint firstItem="AmM-xf-wEq" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" priority="100" constant="-103" id="fL1-XN-gbA"/>
+                            <constraint firstItem="SUK-kc-ubX" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="lWC-gh-Fzk"/>
                             <constraint firstItem="AmM-xf-wEq" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="qwv-nC-AYI"/>
+                            <constraint firstItem="SUK-kc-ubX" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="z0g-L8-cS9"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Wd7-bQ-Euq"/>
@@ -53,145 +51,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1914.4000000000001" y="38.23088455772114"/>
-        </scene>
-        <!--Second View Controller-->
-        <scene sceneID="4cV-cc-dRp">
-            <objects>
-                <viewController id="UTm-uz-XMA" customClass="SecondViewController" customModule="SlideDownMenu" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="gpN-th-KDu"/>
-                        <viewControllerLayoutGuide type="bottom" id="Wbc-RG-JYh"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="AVn-1R-w5L">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XUb-3T-ou8">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tm1-iY-949">
-                                        <rect key="frame" x="10" y="100" width="355" height="400"/>
-                                        <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="kmJ-MB-lne">
-                                                <rect key="frame" x="0.0" y="0.0" width="355" height="400"/>
-                                                <subviews>
-                                                    <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bkh-wT-99g">
-                                                        <rect key="frame" x="0.0" y="0.0" width="355" height="79"/>
-                                                        <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    </view>
-                                                    <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tBV-40-kz3">
-                                                        <rect key="frame" x="0.0" y="80" width="355" height="79.5"/>
-                                                        <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    </view>
-                                                    <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mv7-WB-Wau">
-                                                        <rect key="frame" x="0.0" y="160.5" width="355" height="79"/>
-                                                        <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    </view>
-                                                    <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jhF-Ut-3Ny">
-                                                        <rect key="frame" x="0.0" y="240.5" width="355" height="79.5"/>
-                                                        <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jdx-Jc-f6I">
-                                                        <rect key="frame" x="0.0" y="321" width="355" height="79"/>
-                                                        <subviews>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="M8F-oP-EBG">
-                                                                <rect key="frame" x="149" y="4" width="56" height="71"/>
-                                                                <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Legenda" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JtN-S1-24f">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="56" height="17"/>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                                        <nil key="highlightedColor"/>
-                                                                    </label>
-                                                                    <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jaS-63-v9Z">
-                                                                        <rect key="frame" x="13" y="37" width="30" height="34"/>
-                                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                                        <state key="normal">
-                                                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                                        </state>
-                                                                        <connections>
-                                                                            <action selector="didTapSlideDownViewBottomButton:" destination="UTm-uz-XMA" eventType="touchUpInside" id="Sho-fi-pVN"/>
-                                                                        </connections>
-                                                                    </button>
-                                                                </subviews>
-                                                            </stackView>
-                                                        </subviews>
-                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                        <constraints>
-                                                            <constraint firstItem="M8F-oP-EBG" firstAttribute="top" secondItem="Jdx-Jc-f6I" secondAttribute="top" constant="4" id="5Yw-P6-Cdr"/>
-                                                            <constraint firstAttribute="bottom" secondItem="M8F-oP-EBG" secondAttribute="bottom" constant="4" id="NtQ-4B-naq"/>
-                                                            <constraint firstItem="M8F-oP-EBG" firstAttribute="centerX" secondItem="Jdx-Jc-f6I" secondAttribute="centerX" id="VIu-6q-3e0"/>
-                                                        </constraints>
-                                                    </view>
-                                                </subviews>
-                                            </stackView>
-                                        </subviews>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstItem="kmJ-MB-lne" firstAttribute="top" secondItem="Tm1-iY-949" secondAttribute="top" id="WCg-Sn-74C"/>
-                                            <constraint firstAttribute="bottom" secondItem="kmJ-MB-lne" secondAttribute="bottom" id="Zlo-xf-zEa"/>
-                                            <constraint firstItem="kmJ-MB-lne" firstAttribute="leading" secondItem="Tm1-iY-949" secondAttribute="leading" id="a4e-AL-bva"/>
-                                            <constraint firstAttribute="trailing" secondItem="kmJ-MB-lne" secondAttribute="trailing" id="lbK-5G-lj1"/>
-                                            <constraint firstAttribute="height" constant="400" id="m1j-Or-v5C"/>
-                                        </constraints>
-                                        <connections>
-                                            <outletCollection property="gestureRecognizers" destination="OpZ-yQ-QE3" appends="YES" id="3Zd-UD-xMt"/>
-                                        </connections>
-                                    </view>
-                                </subviews>
-                                <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstItem="Tm1-iY-949" firstAttribute="top" secondItem="XUb-3T-ou8" secondAttribute="top" constant="100" id="aXB-uI-2dy"/>
-                                    <constraint firstAttribute="trailing" secondItem="Tm1-iY-949" secondAttribute="trailing" constant="10" id="ef3-4r-i2g"/>
-                                    <constraint firstItem="Tm1-iY-949" firstAttribute="leading" secondItem="XUb-3T-ou8" secondAttribute="leading" constant="10" id="lCx-UL-GBv"/>
-                                </constraints>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                        <gestureRecognizers/>
-                        <constraints>
-                            <constraint firstItem="XUb-3T-ou8" firstAttribute="centerX" secondItem="AVn-1R-w5L" secondAttribute="centerX" id="A0C-bt-1Kz"/>
-                            <constraint firstItem="XUb-3T-ou8" firstAttribute="centerY" secondItem="AVn-1R-w5L" secondAttribute="centerY" id="KTe-Oi-QcW"/>
-                            <constraint firstItem="XUb-3T-ou8" firstAttribute="width" secondItem="AVn-1R-w5L" secondAttribute="width" id="Rfp-Jq-R6v"/>
-                            <constraint firstItem="XUb-3T-ou8" firstAttribute="height" secondItem="AVn-1R-w5L" secondAttribute="height" id="WVQ-UH-mP0"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="k78-ib-2gV">
-                        <barButtonItem key="leftBarButtonItem" title="Item" id="Qt1-Wm-kcw"/>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="contentView" destination="XUb-3T-ou8" id="GiA-kT-vcG"/>
-                        <outlet property="panGestureRecognizer" destination="OpZ-yQ-QE3" id="Adg-hG-X96"/>
-                        <outlet property="pullLabel" destination="JtN-S1-24f" id="Uvd-NN-50z"/>
-                        <outlet property="slideDownButtonView" destination="Jdx-Jc-f6I" id="r8k-zp-OnE"/>
-                        <outlet property="slideDownViewBottomButton" destination="jaS-63-v9Z" id="RqH-na-zPC"/>
-                        <outlet property="slidingView" destination="Tm1-iY-949" id="GRa-LF-PHC"/>
-                        <outlet property="slidingViewTopConstraint" destination="aXB-uI-2dy" id="1Hl-fv-8tO"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="E2e-Uk-CHx" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <panGestureRecognizer minimumNumberOfTouches="1" id="OpZ-yQ-QE3">
-                    <connections>
-                        <action selector="didPanView:" destination="UTm-uz-XMA" id="4wh-KY-etJ"/>
-                    </connections>
-                </panGestureRecognizer>
-            </objects>
-            <point key="canvasLocation" x="2936.8000000000002" y="37.331334332833585"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="kXL-Ev-S4C">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="IAW-Lg-nlQ" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Huc-ON-xgC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="nid-Mi-M0V" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="36" y="38.23088455772114"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="8KE-DC-wQV">
@@ -212,4 +71,7 @@
             <point key="canvasLocation" x="975.20000000000005" y="38.23088455772114"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="parade" width="3100" height="3100"/>
+    </resources>
 </document>
