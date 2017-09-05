@@ -16,12 +16,18 @@ class SlideDownView: UIView {
     @IBOutlet var panGestureRecognizer: UIPanGestureRecognizer!
     @IBOutlet weak var slideDownViewBottomButton: UIButton!
     @IBOutlet weak var pullLabel: UILabel!
+  
+    enum swipeDirection {
+        case down
+        case up
+    }
     
-    var slideDownViewShown: Bool = false
+    var mySwipeDirection = swipeDirection.down
+    var slideDownViewOut: Bool = false
     var originalSlideDownViewAlpha: CGFloat = 1.0
     var slideDownViewStartPosition: CGFloat!
     var slideDownViewEndPosition: CGFloat!
-
+    
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -67,54 +73,57 @@ class SlideDownView: UIView {
 
     @IBAction func didPanView(_ sender: UIPanGestureRecognizer) {
         let centerRatio = (self.frame.origin.y + -slideDownViewStartPosition) / (slideDownViewEndPosition + -slideDownViewStartPosition)
+        let velocity = panGestureRecognizer.velocity(in: panGestureRecognizer.view)
+        let translation = panGestureRecognizer.translation(in: self)
+        
+        // check if user is sliding up or down
+        if velocity.y > 0 {
+            mySwipeDirection = swipeDirection.down
+        }
+        else if velocity.y < 0 {
+            mySwipeDirection = swipeDirection.up
+        }
         
         switch panGestureRecognizer.state {
         case .changed:
-            let velocity = panGestureRecognizer.velocity(in: panGestureRecognizer.view)
-            let translation = panGestureRecognizer.translation(in: self)
-            if velocity.y > 0 {
-                // down
+            
+            switch mySwipeDirection {
+            case .down:
                 self.center = CGPoint(x: self.center.x, y: min(self.center.y + translation.y, self.frame.height / 2 + slideDownViewEndPosition))
-                print("down")
-            }
-            else if velocity.y < 0 {
-                // up
+            case .up:
                 self.center = CGPoint(x: self.center.x, y: max(self.center.y + translation.y, self.frame.height / 2 + slideDownViewStartPosition))
-                print("up")
             }
+            
             print ("centerRatio = \(centerRatio)")
             
-            //setViewAlphas(centerRatio: testCenterRatio)
+            //setViewAlphas(centerRatio: centerRatio)
             panGestureRecognizer.setTranslation(CGPoint.zero, in: self)
         case .ended:
-            // check if user is sliding up or down
             if panGestureRecognizer.view != nil {
-                let velocity = panGestureRecognizer.velocity(in: panGestureRecognizer.view)
                 var verticalDirectionTreshold: CGFloat = 0.0
-                
-                if velocity.y > 0 {
-                    // down
-                    verticalDirectionTreshold = -2.0
-                }
-                else if velocity.y < 0 {
-                    // up
-                    verticalDirectionTreshold = 2.0//0.8
-                }
                 
                 // set new center
                 var newCenter = CGPoint(x: self.center.x, y: self.frame.height / 2 + slideDownViewEndPosition)
                 
+                switch mySwipeDirection {
+                case .down:
+                    verticalDirectionTreshold = -2.0
+                case .up:
+                    verticalDirectionTreshold = 2.0
+                }
+                
                 if centerRatio < verticalDirectionTreshold  {
                     newCenter = CGPoint(x: self.center.x, y:  self.frame.height / 2 + slideDownViewStartPosition)
+                    slideDownViewOut = false
                 } else if Int(self.frame.origin.y) != Int(slideDownViewStartPosition) {
                     newCenter = CGPoint(x: self.center.x, y: self.frame.height / 2 + slideDownViewEndPosition)
+                    slideDownViewOut = true
                 }
                 
                 UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.8, options: UIViewAnimationOptions(), animations: {
                     //self.setViewAlphas(centerRatio: centerRatio > verticalDirectionTreshold ? 1.0 : 0.0)// < 0.5 ? 0.0 : 1.0)
                     print ("Animating: testCenterRatio = \(centerRatio)")
                     self.center = newCenter
-                    self.layoutIfNeeded()
                 }, completion: { finished in
                      print ("self.frame.origin.y is \(self.frame.origin.y)")
                 })
