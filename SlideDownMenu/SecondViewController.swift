@@ -38,6 +38,8 @@ class SecondViewController: UIViewController {
         slideDownViewBottomButton.tintColor = .black
         
         _ = panGestureRecognizer // lazily init
+        
+        updateUI()
     }
     
     override func viewDidAppear(_ animated: Bool) {

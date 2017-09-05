@@ -123,7 +123,7 @@ class SlideDownView: UIView {
                     verticalDirectionTreshold = 2.0//0.8
                     print("up")
                 }
-                
+                /*
                 //print ("slidingView.frame.origin.y is \(slidingView.frame.origin.y) en slideDownViewStartPosition is \(slideDownViewStartPosition)")
                 if centerRatio < verticalDirectionTreshold  {
                     //slidingViewTopConstraint.constant = slideDownViewStartPosition
@@ -138,6 +138,7 @@ class SlideDownView: UIView {
                     print ("Animating: testCenterRatio = \(testCenterRatio)")
                     self.layoutIfNeeded()
                 }, completion: nil)
+ */
             }
         default:
             break
