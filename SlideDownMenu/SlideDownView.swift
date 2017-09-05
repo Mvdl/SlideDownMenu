@@ -82,29 +82,29 @@ class SlideDownView: UIView {
     }
 
     @IBAction func didPanView(_ sender: UIPanGestureRecognizer) {
-        let point = panGestureRecognizer.location(in: view)
+        let point = panGestureRecognizer.location(in: self)
         let centerRatio = (slidingViewTopConstraint.constant + slideDownViewStartPosition) / (slideDownViewEndPosition + slideDownViewStartPosition)
-        let testCenterRatio = (view.frame.origin.y + -slideDownViewStartPosition) / (slideDownViewEndPosition + -slideDownViewStartPosition)
+        let testCenterRatio = (self.frame.origin.y + -slideDownViewStartPosition) / (slideDownViewEndPosition + -slideDownViewStartPosition)
         
         
         switch panGestureRecognizer.state {
         case .changed:
             let velocity = panGestureRecognizer.velocity(in: panGestureRecognizer.view)
-            let translation = panGestureRecognizer.translation(in: view)
+            let translation = panGestureRecognizer.translation(in: self)
             if velocity.y > 0 {
                 // down
-                view.center = CGPoint(x: view.center.x, y: min(view.center.y + translation.y, view.frame.height / 2 + slideDownViewEndPosition))
+                self.center = CGPoint(x: self.center.x, y: min(self.center.y + translation.y, self.frame.height / 2 + slideDownViewEndPosition))
                 print("down")
             }
             else if velocity.y < 0 {
                 // up
-                view.center = CGPoint(x: view.center.x, y: max(view.center.y + translation.y, view.frame.height / 2 + slideDownViewStartPosition))
+                self.center = CGPoint(x: self.center.x, y: max(self.center.y + translation.y, self.frame.height / 2 + slideDownViewStartPosition))
                 print("up")
             }
             print ("testCenterRatio = \(testCenterRatio)")
             
             //setViewAlphas(centerRatio: testCenterRatio)
-            panGestureRecognizer.setTranslation(CGPoint.zero, in: view)
+            panGestureRecognizer.setTranslation(CGPoint.zero, in: self)
         case .ended:
             print ("centerRatio = \(centerRatio)")
             
