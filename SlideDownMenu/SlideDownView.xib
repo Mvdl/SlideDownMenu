@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SlideDownView" customModule="SlideDownMenu" customModuleProvider="target">
             <connections>
+                <outlet property="contentView" destination="gcf-b9-b4Y" id="Hcn-5P-3k3"/>
                 <outlet property="panGestureRecognizer" destination="uvo-A2-gId" id="nrG-eW-Awr"/>
                 <outlet property="pullLabel" destination="TtF-d7-nV2" id="5cN-eF-dyX"/>
                 <outlet property="slideDownButtonView" destination="g3Z-Gv-RbN" id="ydE-mV-oXI"/>
@@ -22,57 +23,52 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="Zic-LB-Key">
-                    <rect key="frame" x="10" y="10" width="300" height="548"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gcf-b9-b4Y">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="518"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g3Z-Gv-RbN">
+                    <rect key="frame" x="0.0" y="518" width="320" height="50"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cnE-49-NaD">
-                            <rect key="frame" x="0.0" y="0.0" width="300" height="135.5"/>
-                            <color key="backgroundColor" red="0.0" green="0.39009457829999999" blue="0.70335531230000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Q9-bz-QKS">
-                            <rect key="frame" x="0.0" y="137.5" width="300" height="135.5"/>
-                            <color key="backgroundColor" red="0.50196081400000003" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tJu-aV-OXF">
-                            <rect key="frame" x="0.0" y="275" width="300" height="135.5"/>
-                            <color key="backgroundColor" red="0.99005120970000005" green="1" blue="0.91414396549999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g3Z-Gv-RbN">
-                            <rect key="frame" x="0.0" y="412.5" width="300" height="135.5"/>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="1gJ-y8-vm0">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                             <subviews>
-                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="1gJ-y8-vm0">
-                                    <rect key="frame" x="0.0" y="0.0" width="300" height="135.5"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Legenda" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TtF-d7-nV2">
-                                            <rect key="frame" x="0.0" y="0.0" width="300" height="68"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CDV-fc-5w6">
-                                            <rect key="frame" x="0.0" y="68" width="300" height="67.5"/>
-                                            <state key="normal" title="Button"/>
-                                        </button>
-                                    </subviews>
-                                </stackView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Legenda" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TtF-d7-nV2">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="25"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CDV-fc-5w6">
+                                    <rect key="frame" x="0.0" y="25" width="320" height="25"/>
+                                    <state key="normal" title="Button"/>
+                                </button>
                             </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
-                                <constraint firstItem="1gJ-y8-vm0" firstAttribute="width" secondItem="g3Z-Gv-RbN" secondAttribute="width" id="0oZ-Pl-7Qv"/>
-                                <constraint firstItem="1gJ-y8-vm0" firstAttribute="height" secondItem="g3Z-Gv-RbN" secondAttribute="height" id="Jph-3F-cQb"/>
-                                <constraint firstItem="1gJ-y8-vm0" firstAttribute="centerY" secondItem="g3Z-Gv-RbN" secondAttribute="centerY" id="oee-m0-Od8"/>
-                                <constraint firstItem="1gJ-y8-vm0" firstAttribute="centerX" secondItem="g3Z-Gv-RbN" secondAttribute="centerX" id="ylC-Ps-cOD"/>
+                                <constraint firstAttribute="height" constant="50" id="FWB-bU-m6V"/>
                             </constraints>
-                        </view>
+                        </stackView>
                     </subviews>
-                </stackView>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="1gJ-y8-vm0" firstAttribute="top" secondItem="g3Z-Gv-RbN" secondAttribute="top" id="KlE-ME-3o6"/>
+                        <constraint firstItem="1gJ-y8-vm0" firstAttribute="leading" secondItem="g3Z-Gv-RbN" secondAttribute="leading" id="aLK-yQ-kAW"/>
+                        <constraint firstAttribute="trailing" secondItem="1gJ-y8-vm0" secondAttribute="trailing" id="d0F-NU-x9x"/>
+                        <constraint firstAttribute="height" constant="50" id="nBk-HE-Xpd"/>
+                        <constraint firstAttribute="bottom" secondItem="1gJ-y8-vm0" secondAttribute="bottom" id="xUe-os-wwp"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="0.50196081400000003" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="Zic-LB-Key" secondAttribute="bottom" constant="10" id="2qb-7r-vsu"/>
-                <constraint firstAttribute="trailing" secondItem="Zic-LB-Key" secondAttribute="trailing" constant="10" id="G04-Ls-VGM"/>
-                <constraint firstItem="Zic-LB-Key" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="OHk-qG-MuA"/>
-                <constraint firstItem="Zic-LB-Key" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="vKg-uI-zSx"/>
+                <constraint firstItem="g3Z-Gv-RbN" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Je7-Qd-WZm"/>
+                <constraint firstAttribute="bottom" secondItem="g3Z-Gv-RbN" secondAttribute="bottom" id="YM7-AI-1tP"/>
+                <constraint firstItem="g3Z-Gv-RbN" firstAttribute="top" secondItem="gcf-b9-b4Y" secondAttribute="bottom" id="hZD-0l-bfR"/>
+                <constraint firstItem="gcf-b9-b4Y" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="hno-Ck-oWb"/>
+                <constraint firstAttribute="trailing" secondItem="g3Z-Gv-RbN" secondAttribute="trailing" id="xKx-H7-zus"/>
+                <constraint firstItem="gcf-b9-b4Y" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="xSX-mh-6k6"/>
+                <constraint firstAttribute="trailing" secondItem="gcf-b9-b4Y" secondAttribute="trailing" id="yjZ-tf-rXi"/>
             </constraints>
             <connections>
                 <outletCollection property="gestureRecognizers" destination="uvo-A2-gId" appends="YES" id="OZa-u7-kuz"/>

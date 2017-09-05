@@ -10,25 +10,18 @@ import UIKit
 
 class SlideDownView: UIView {
     
-    
     @IBOutlet weak var view: UIView!
-    @IBOutlet var panGestureRecognizer: UIPanGestureRecognizer!
+    @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var slideDownButtonView: UIView!
+    @IBOutlet var panGestureRecognizer: UIPanGestureRecognizer!
     @IBOutlet weak var slideDownViewBottomButton: UIButton!
     @IBOutlet weak var pullLabel: UILabel!
     
     var slideDownViewShown: Bool = false
     var originalSlideDownViewAlpha: CGFloat = 1.0
-    var slideDownViewStartPosition: CGFloat = 0
-    var slideDownViewEndPosition: CGFloat = 200
-    var lastPoint: CGPoint = CGPoint.zero
-    var slidingViewTopConstraint: NSLayoutConstraint!
+    var slideDownViewStartPosition: CGFloat!
+    var slideDownViewEndPosition: CGFloat!
 
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        nibSetup()
-    }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -36,30 +29,20 @@ class SlideDownView: UIView {
     }
     
     private func nibSetup() {
-        self.backgroundColor = .red
-        
+        self.translatesAutoresizingMaskIntoConstraints = false
+
         view = loadViewFromNib()
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         view.translatesAutoresizingMaskIntoConstraints = true
         view.backgroundColor = .purple
         addSubview(view)
-
-//        guard let superview = self.superview else {
-//            print("Error! `superview` was nil – call `addSubview(view: UIView)` before calling `bindFrameToSuperviewBounds()` to fix this.")
-//            return
-//        }
         
-        slidingViewTopConstraint = NSLayoutConstraint(
-            item: self.view,
-            attribute: NSLayoutAttribute.top,
-            relatedBy: NSLayoutRelation.equal,
-            toItem: self,
-            attribute: NSLayoutAttribute.top,
-            multiplier: 1,
-            constant: 0)
+        self.backgroundColor = .clear
         
-        self.addConstraint(slidingViewTopConstraint)
+        originalSlideDownViewAlpha = self.alpha
+        slideDownViewStartPosition = -self.frame.height + 104// visible part of menu + navigationbar height
+        slideDownViewEndPosition = 64// navigation bar height
         
         updateUI()
     }
@@ -73,19 +56,17 @@ class SlideDownView: UIView {
     }
     
     func updateUI() {
-        slidingViewTopConstraint.constant = -view.frame.size.height + 104
-        slideDownViewStartPosition = slidingViewTopConstraint.constant//slidingView.frame.origin.y
-        originalSlideDownViewAlpha = view.alpha
-        slideDownViewEndPosition = 64//slidingView.bounds.height
+        self.center = CGPoint(x: self.center.x, y:  self.frame.height / 2 + slideDownViewStartPosition)
+
         print ("slidingView height is \(view.frame.size.height)")
         print ("slideDownViewStartPosition is \(slideDownViewStartPosition)")
+        print ("self.center is \(self.center)")
+        print ("self.frame.origin.y is \(self.frame.origin.y)")
+        self.layoutIfNeeded()
     }
 
     @IBAction func didPanView(_ sender: UIPanGestureRecognizer) {
-        let point = panGestureRecognizer.location(in: self)
-        let centerRatio = (slidingViewTopConstraint.constant + slideDownViewStartPosition) / (slideDownViewEndPosition + slideDownViewStartPosition)
-        let testCenterRatio = (self.frame.origin.y + -slideDownViewStartPosition) / (slideDownViewEndPosition + -slideDownViewStartPosition)
-        
+        let centerRatio = (self.frame.origin.y + -slideDownViewStartPosition) / (slideDownViewEndPosition + -slideDownViewStartPosition)
         
         switch panGestureRecognizer.state {
         case .changed:
@@ -101,13 +82,11 @@ class SlideDownView: UIView {
                 self.center = CGPoint(x: self.center.x, y: max(self.center.y + translation.y, self.frame.height / 2 + slideDownViewStartPosition))
                 print("up")
             }
-            print ("testCenterRatio = \(testCenterRatio)")
+            print ("centerRatio = \(centerRatio)")
             
             //setViewAlphas(centerRatio: testCenterRatio)
             panGestureRecognizer.setTranslation(CGPoint.zero, in: self)
         case .ended:
-            print ("centerRatio = \(centerRatio)")
-            
             // check if user is sliding up or down
             if panGestureRecognizer.view != nil {
                 let velocity = panGestureRecognizer.velocity(in: panGestureRecognizer.view)
@@ -116,34 +95,32 @@ class SlideDownView: UIView {
                 if velocity.y > 0 {
                     // down
                     verticalDirectionTreshold = -2.0
-                    print("down")
                 }
                 else if velocity.y < 0 {
                     // up
                     verticalDirectionTreshold = 2.0//0.8
-                    print("up")
                 }
-                /*
-                //print ("slidingView.frame.origin.y is \(slidingView.frame.origin.y) en slideDownViewStartPosition is \(slideDownViewStartPosition)")
+                
+                // set new center
+                var newCenter = CGPoint(x: self.center.x, y: self.frame.height / 2 + slideDownViewEndPosition)
+                
                 if centerRatio < verticalDirectionTreshold  {
-                    //slidingViewTopConstraint.constant = slideDownViewStartPosition
-                    view.center = CGPoint(x: view.center.x, y:  view.frame.height / 2 + slideDownViewEndPosition)
-                } else if Int(view.frame.origin.y) != Int(slideDownViewStartPosition) {
-                    //slidingViewTopConstraint.constant = slideDownViewEndPosition//originalSlideDownViewPosition
-                    view.center = CGPoint(x: view.center.x, y: view.frame.height / 2 + slideDownViewEndPosition)
+                    newCenter = CGPoint(x: self.center.x, y:  self.frame.height / 2 + slideDownViewStartPosition)
+                } else if Int(self.frame.origin.y) != Int(slideDownViewStartPosition) {
+                    newCenter = CGPoint(x: self.center.x, y: self.frame.height / 2 + slideDownViewEndPosition)
                 }
                 
                 UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.8, options: UIViewAnimationOptions(), animations: {
-                    //self.setViewAlphas(centerRatio: testCenterRatio > verticalDirectionTreshold ? 1.0 : 0.0)// < 0.5 ? 0.0 : 1.0)
-                    print ("Animating: testCenterRatio = \(testCenterRatio)")
+                    //self.setViewAlphas(centerRatio: centerRatio > verticalDirectionTreshold ? 1.0 : 0.0)// < 0.5 ? 0.0 : 1.0)
+                    print ("Animating: testCenterRatio = \(centerRatio)")
+                    self.center = newCenter
                     self.layoutIfNeeded()
-                }, completion: nil)
- */
+                }, completion: { finished in
+                     print ("self.frame.origin.y is \(self.frame.origin.y)")
+                })
             }
         default:
             break
         }
-        lastPoint = point
-
     }
 }
