@@ -5,8 +5,4 @@ This project contains a view called 'SlideDownView', with pan and tap gesture re
 
 Needs some work though..
 
-![Alt text](slideDownMenu1.png?raw=true "Up")
-
-![Alt text](slideDownMenu2.png?raw=true "Halfway")
-
-![Alt text](slideDownMenu3.png?raw=true "Down")
+![Alt text](appvideo.gif?raw=true "")
