@@ -16,7 +16,6 @@
 		7B4E82F11F5D8FD10038850C /* SlideDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4E82F01F5D8FD10038850C /* SlideDownView.swift */; };
 		7B4E82F61F5EF1EC0038850C /* MenuContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4E82F41F5EF1EC0038850C /* MenuContentViewController.swift */; };
 		7B4E82F71F5EF1EC0038850C /* MenuContentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B4E82F51F5EF1EC0038850C /* MenuContentViewController.xib */; };
-		E785F035028EAD3AC3F94844 /* Pods_SlideDownMenu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB9FAAA4C0F191CDFBCB7A69 /* Pods_SlideDownMenu.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,9 +30,6 @@
 		7B4E82F01F5D8FD10038850C /* SlideDownView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideDownView.swift; sourceTree = "<group>"; };
 		7B4E82F41F5EF1EC0038850C /* MenuContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuContentViewController.swift; sourceTree = "<group>"; };
 		7B4E82F51F5EF1EC0038850C /* MenuContentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuContentViewController.xib; sourceTree = "<group>"; };
-		7E64C7795A7011138933B234 /* Pods-SlideDownMenu.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SlideDownMenu.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SlideDownMenu/Pods-SlideDownMenu.debug.xcconfig"; sourceTree = "<group>"; };
-		8772C0AC14C37DC868FD785C /* Pods-SlideDownMenu.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SlideDownMenu.release.xcconfig"; path = "Pods/Target Support Files/Pods-SlideDownMenu/Pods-SlideDownMenu.release.xcconfig"; sourceTree = "<group>"; };
-		BB9FAAA4C0F191CDFBCB7A69 /* Pods_SlideDownMenu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SlideDownMenu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,28 +37,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E785F035028EAD3AC3F94844 /* Pods_SlideDownMenu.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3F964F2174C88000C45E5572 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				BB9FAAA4C0F191CDFBCB7A69 /* Pods_SlideDownMenu.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		7B2AA6381F594AF500FE01C1 = {
 			isa = PBXGroup;
 			children = (
 				7B2AA6431F594AF500FE01C1 /* SlideDownMenu */,
 				7B2AA6421F594AF500FE01C1 /* Products */,
-				E42043E81D77FF5743FC4CBB /* Pods */,
-				3F964F2174C88000C45E5572 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -91,15 +76,6 @@
 			path = SlideDownMenu;
 			sourceTree = "<group>";
 		};
-		E42043E81D77FF5743FC4CBB /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				7E64C7795A7011138933B234 /* Pods-SlideDownMenu.debug.xcconfig */,
-				8772C0AC14C37DC868FD785C /* Pods-SlideDownMenu.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -107,12 +83,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7B2AA6531F594AF500FE01C1 /* Build configuration list for PBXNativeTarget "SlideDownMenu" */;
 			buildPhases = (
-				C11AFAFFB35CC3203FE09415 /* [CP] Check Pods Manifest.lock */,
 				7B2AA63D1F594AF500FE01C1 /* Sources */,
 				7B2AA63E1F594AF500FE01C1 /* Frameworks */,
 				7B2AA63F1F594AF500FE01C1 /* Resources */,
-				FD968A7B17F7D2779F019515 /* [CP] Embed Pods Frameworks */,
-				59ADF5E33D425F1F2E0C543F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -172,54 +145,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		59ADF5E33D425F1F2E0C543F /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SlideDownMenu/Pods-SlideDownMenu-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C11AFAFFB35CC3203FE09415 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		FD968A7B17F7D2779F019515 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SlideDownMenu/Pods-SlideDownMenu-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		7B2AA63D1F594AF500FE01C1 /* Sources */ = {
@@ -350,7 +275,6 @@
 		};
 		7B2AA6541F594AF500FE01C1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7E64C7795A7011138933B234 /* Pods-SlideDownMenu.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = K693WY4Y5S;
@@ -364,7 +288,6 @@
 		};
 		7B2AA6551F594AF500FE01C1 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8772C0AC14C37DC868FD785C /* Pods-SlideDownMenu.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = K693WY4Y5S;
