@@ -72,6 +72,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="parade" width="3100" height="3100"/>
+        <image name="parade" width="1920" height="1920"/>
     </resources>
 </document>

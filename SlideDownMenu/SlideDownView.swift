@@ -115,10 +115,10 @@ class SlideDownView: UIView {
         
         // check if user is sliding up or down
         if velocity.y > 0 {
-            mySwipeDirection = swipeDirection.down
+            mySwipeDirection = .down
         }
         else if velocity.y < 0 {
-            mySwipeDirection = swipeDirection.up
+            mySwipeDirection = .up
         }
         
         switch panGestureRecognizer.state {
