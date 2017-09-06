@@ -5,6 +5,6 @@ This project contains a view called 'SlideDownView', with pan and tap gesture re
 
 ![Alt text](slideDownMenu1.png?raw=true "Up")
 
-![Alt text](slideDownMenu12.png?raw=true "Halfway")
+![Alt text](slideDownMenu2.png?raw=true "Halfway")
 
-![Alt text](SlideDownMenu/slideDownMenu3.png?raw=true "Down")
+![Alt text](slideDownMenu3.png?raw=true "Down")
