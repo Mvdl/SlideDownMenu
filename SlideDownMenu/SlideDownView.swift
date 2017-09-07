@@ -67,7 +67,7 @@ class SlideDownView: UIView {
     }
     
     func updateUI() {
-        slideDownViewStartPosition = -self.bounds.height + slideDownButtonBottomView.frame.height
+        slideDownViewStartPosition = -self.bounds.height + slideDownButtonBottomView.frame.height + slideDownViewEndPosition
         self.center = CGPoint(x: self.center.x, y:  self.frame.height / 2 + slideDownViewStartPosition)
         
         self.layoutIfNeeded()
