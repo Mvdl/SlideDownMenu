@@ -47,7 +47,6 @@ class SlideDownView: UIView {
         view.backgroundColor = .clear
         addSubview(view)
         
-        slideDownViewEndPosition = 64// navigation bar height
         slideDownViewBottomButtonUpImageView.image = slideDownViewBottomButtonUpImage
         slideDownViewBottomButtonUpImageView.tintColor = .black
         slideDownViewBottomButtonDownImageView.image = slideDownViewBottomButtonDownImage
@@ -68,14 +67,8 @@ class SlideDownView: UIView {
     }
     
     func updateUI() {
-        slideDownViewStartPosition = -self.frame.height + 114 // visible part of menu + navigationbar height
+        slideDownViewStartPosition = -self.bounds.height + slideDownButtonBottomView.frame.height
         self.center = CGPoint(x: self.center.x, y:  self.frame.height / 2 + slideDownViewStartPosition)
-        /*
-        print ("slidingView height is \(view.frame.size.height)")
-        print ("slideDownViewStartPosition is \(slideDownViewStartPosition)")
-        print ("self.center is \(self.center)")
-        print ("self.frame.origin.y is \(self.frame.origin.y)")
-        */
         
         self.layoutIfNeeded()
     }
@@ -83,7 +76,6 @@ class SlideDownView: UIView {
     func setViewAlpha(centerRatio: CGFloat) {
         let ratioToAlpha = 1.0 - centerRatio
         slideDownButtonBottomView.alpha = ratioToAlpha * 2
-        //print ("ratioToAlpha: \(ratioToAlpha)")
     }
     
     @IBAction func didTapslideDownButtonView(gestureRecognizer: UIGestureRecognizer) {
@@ -130,8 +122,6 @@ class SlideDownView: UIView {
             case .up:
                 self.center = CGPoint(x: self.center.x, y: max(self.center.y + translation.y, self.frame.height / 2 + slideDownViewStartPosition))
             }
-            
-            //print ("centerRatio = \(centerRatio)")
             
             setViewAlpha(centerRatio: centerRatio)
             panGestureRecognizer.setTranslation(CGPoint.zero, in: self)

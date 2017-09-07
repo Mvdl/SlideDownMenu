@@ -18,34 +18,48 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="parade" translatesAutoresizingMaskIntoConstraints="NO" id="SUK-kc-ubX">
-                                <rect key="frame" x="-0.5" y="-0.5" width="375" height="667"/>
-                            </imageView>
-                            <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AmM-xf-wEq" customClass="SlideDownView" customModule="SlideDownMenu" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="-39" width="375" height="236"/>
-                                <color key="backgroundColor" red="0.80000001190000003" green="1" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P4j-Vf-Kah">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="parade" translatesAutoresizingMaskIntoConstraints="NO" id="SUK-kc-ubX">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                    </imageView>
+                                    <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AmM-xf-wEq" customClass="SlideDownView" customModule="SlideDownMenu" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="280"/>
+                                        <color key="backgroundColor" red="0.80000001190000003" green="1" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" priority="100" constant="280" id="M0S-NP-6SZ"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="236" id="NGI-Ce-dvn"/>
+                                    <constraint firstItem="AmM-xf-wEq" firstAttribute="centerX" secondItem="P4j-Vf-Kah" secondAttribute="centerX" id="1gk-hr-0cX"/>
+                                    <constraint firstAttribute="bottom" secondItem="SUK-kc-ubX" secondAttribute="bottom" id="8BQ-rR-bG0"/>
+                                    <constraint firstItem="AmM-xf-wEq" firstAttribute="top" secondItem="P4j-Vf-Kah" secondAttribute="top" priority="100" id="CWt-9Z-BU1"/>
+                                    <constraint firstItem="SUK-kc-ubX" firstAttribute="top" secondItem="P4j-Vf-Kah" secondAttribute="top" id="Grp-YR-kCK"/>
+                                    <constraint firstAttribute="trailing" secondItem="SUK-kc-ubX" secondAttribute="trailing" id="JP8-sH-Jah"/>
+                                    <constraint firstItem="AmM-xf-wEq" firstAttribute="width" secondItem="P4j-Vf-Kah" secondAttribute="width" id="a94-pK-Wt0"/>
+                                    <constraint firstItem="SUK-kc-ubX" firstAttribute="leading" secondItem="P4j-Vf-Kah" secondAttribute="leading" id="nEh-lW-qqE"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="SUK-kc-ubX" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="D1q-4L-hlf"/>
-                            <constraint firstItem="SUK-kc-ubX" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="cii-aY-At3"/>
-                            <constraint firstAttribute="trailing" secondItem="AmM-xf-wEq" secondAttribute="trailing" id="dYn-Ud-D2Y"/>
-                            <constraint firstItem="AmM-xf-wEq" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" priority="100" constant="-103" id="fL1-XN-gbA"/>
-                            <constraint firstItem="SUK-kc-ubX" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="lWC-gh-Fzk"/>
-                            <constraint firstItem="AmM-xf-wEq" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="qwv-nC-AYI"/>
-                            <constraint firstItem="SUK-kc-ubX" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="z0g-L8-cS9"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="P4j-Vf-Kah" secondAttribute="bottom" id="AH7-gS-z7m"/>
+                            <constraint firstItem="P4j-Vf-Kah" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="Qf5-4c-Kxn"/>
+                            <constraint firstItem="P4j-Vf-Kah" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="S7K-Hc-dsr"/>
+                            <constraint firstAttribute="trailing" secondItem="P4j-Vf-Kah" secondAttribute="trailing" id="tVq-Gc-Mio"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Wd7-bQ-Euq"/>
                     <connections>
+                        <outlet property="contentView" destination="P4j-Vf-Kah" id="SmM-n8-Yqf"/>
                         <outlet property="slideDownView" destination="AmM-xf-wEq" id="jw0-jl-7vh"/>
+                        <outlet property="slideDownViewTopConstraint" destination="CWt-9Z-BU1" id="Xdd-wr-7i3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -57,7 +71,8 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="buv-CQ-QtK" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="pvr-f1-cx2">
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="pvr-f1-cx2">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

@@ -10,19 +10,24 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var slideDownView: SlideDownView!
+    @IBOutlet weak var slideDownViewTopConstraint: NSLayoutConstraint!
+    
+    var menuContentViewController: MenuContentViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let menuContentViewController = MenuContentViewController()
+        menuContentViewController = MenuContentViewController()
         slideDownView.contentView.addSubview(menuContentViewController.view)
-        menuContentViewController.view.frame = slideDownView.contentView.bounds
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        menuContentViewController.view.frame = slideDownView.contentView.bounds
+        slideDownView.slideDownViewEndPosition = slideDownViewTopConstraint.constant
         slideDownView.updateUI()
     }
 }
